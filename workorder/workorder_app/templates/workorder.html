@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Work Orders</title>
+</head>
+<body>
+    <h1>All Work Orders</h1>
+    <p><a href="/">Creating a New Extra Work Order</a></p>
+    <p class="head"><a href="/jobname">Create Job</a></p>
+    <table>
+        <tr>
+            <th>Work Order No.</th>
+            <th>General Contractor</th>
+            <th>Job Name</th>
+            <th>Location of Work Performed</th>
+            <th>Signature of General Contractor</th>
+            <th>Signature of Belcon Foreman</th>
+            <th>Actions</th>
+        </tr>
+        {% for one_work_order in all_work_orders reversed %}
+        <tr>
+            <td><a href="/show_work_order/{{one_work_order.id}}">{{one_work_order.id}}</a></td>
+            <td>{{one_work_order.jobname.contractor_name}}</td>
+            <td>{{one_work_order.jobname.name}}</td>
+            <td>{{one_work_order.location}}</td>
+            <td><img src="{{one_work_order.signature_1}}" alt="Signature of contractor" srcset=""></td>
+            <td><img src="{{one_work_order.signature_2}}" alt="Signature of belcon foreman" srcset=""></td>
+            <td>
+                <ul>
+                    <li><a href="/delete/{{one_work_order.id}}">Delete Work Order</a></li><br>
+                    <li><a href="/edit/{{one_work_order.id">Edit Work Order</a></li>
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
